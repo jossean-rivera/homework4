@@ -7,17 +7,47 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final TextEditingController usernameController = TextEditingController();
+    final TextEditingController passwordController = TextEditingController();
+
     return Scaffold(
       appBar: AppBar(
         title: const Text("Login"),
       ),
-      body: Center(
-        child: FilledButton(
-          child: const Text("Log In"),
-          onPressed: () {
-            BlocProvider.of<AuthenticationBloc>(context)
-                .add(AuthenticationLoginEvent());
-          },
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            TextField( // Add username textbox
+              controller: usernameController,
+              decoration: const InputDecoration(
+                labelText: "Username",
+                border: OutlineInputBorder(),
+              ),
+            ),
+            const SizedBox(height: 16), // Add space
+            TextField(  // Add password textbox
+              controller: passwordController,
+              obscureText: true,
+              decoration: const InputDecoration(
+                labelText: "Password",
+                border: OutlineInputBorder(),
+              ),
+            ),
+            const SizedBox(height: 32), // Add space
+            FilledButton( //  Add login button
+              child: const Text("Log In"),
+              onPressed: () {
+                
+                // Trigger login with authentication bloc
+                BlocProvider.of<AuthenticationBloc>(context).add(
+                  AuthenticationLoginEvent(),
+                );
+              },
+            ),
+          ],
         ),
       ),
     );
