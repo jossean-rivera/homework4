@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:homework4/navigation/route_names.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:homework4/blocs/authentication/bloc/authentication_bloc.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -15,7 +15,9 @@ class ProfilePage extends StatelessWidget {
         child: FilledButton(
           child: const Text("Log Out"),
           onPressed: () {
-            context.goNamed(RouteNames.login);
+            BlocProvider.of<AuthenticationBloc>(context).add(
+              AuthenticationLogoutEvent(),
+            );
           },
         ),
       ),
