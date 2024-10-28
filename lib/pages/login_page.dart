@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:homework4/navigation/route_names.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:homework4/blocs/authentication/bloc/authentication_bloc.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -15,7 +15,8 @@ class LoginPage extends StatelessWidget {
         child: FilledButton(
           child: const Text("Log In"),
           onPressed: () {
-            context.goNamed(RouteNames.byAuthor);
+            BlocProvider.of<AuthenticationBloc>(context)
+                .add(AuthenticationLoginEvent());
           },
         ),
       ),
