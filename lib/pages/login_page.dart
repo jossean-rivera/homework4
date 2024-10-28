@@ -15,7 +15,7 @@ class LoginPage extends StatelessWidget {
         child: FilledButton(
           child: const Text("Log In"),
           onPressed: () {
-            context.goNamed(RouteNames.home);
+            context.goNamed(RouteNames.byAuthor);
           },
         ),
       ),
