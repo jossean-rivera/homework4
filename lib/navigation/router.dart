@@ -25,20 +25,19 @@ GoRouter createRouter(AuthenticationBloc authenticationBloc) {
       //  Check if the current bloc state is for logging out
       if (authenticationBloc.state is AuthenticationLoggedOut) {
         //  If the user is not on the login page, then redirect the user to /login
-        if (state.fullPath?.startsWith("/login") == true) {
+        if (state.fullPath?.startsWith("/login") != true) {
           return "/login";
         }
       } else if (authenticationBloc.state is AuthenticationLoggedIn) {
 
         //  If the event for logging in raise, and the user is in the login page, 
         //  then redirect to the home page
-        if (state.fullPath?.startsWith("/logging") == true){
+        if (state.fullPath?.startsWith("/login") == true){
           return "/byAuthor";
         }
       }
 
-      //  Default to login page
-      return "/login";
+      return null;
     },
     navigatorKey: rootNavigatorKey, // root navigator key
     routes: [
