@@ -20,6 +20,7 @@ final GlobalKey<NavigatorState> shellNavigatorKey =
 
 GoRouter createRouter(AuthenticationBloc authenticationBloc) {
   return GoRouter(
+    initialLocation: "/login", // Set the login page as the stating page
     refreshListenable: StreamToListenable([authenticationBloc.stream]),
     redirect: (context, state) {
       //  Check if the current bloc state is for logging out
